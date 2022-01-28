@@ -1,6 +1,5 @@
 FROM debian:buster-slim
 ARG TARGETPLATFORM
-ENV PATH=$PATH:/usr/local/go/bin
 ENV PGDATA=/var/lib/postgresql/13/data
 
 ENV DB_USER=qgis
