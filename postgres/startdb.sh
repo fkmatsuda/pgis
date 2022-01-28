@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-timedatectl set-timezone $TIMEZONE
+ln -s /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 mkdir -p $PGDATA 
 chown -R postgres:postgres $PGDATA 
 su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA init' 
