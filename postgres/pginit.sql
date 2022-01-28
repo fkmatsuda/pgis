@@ -11,6 +11,3 @@ CREATE EXTENSION postgis_sfcgal;
 CREATE EXTENSION fuzzystrmatch;
 -- unaccent
 CREATE EXTENSION unaccent;
-
-alter user postgres with password 'postgres';
-create user qgis with createdb password 'qgis';
