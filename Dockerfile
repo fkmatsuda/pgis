@@ -11,7 +11,7 @@ RUN echo "deb http://deb.debian.org/debian buster contrib non-free" >> /etc/apt/
     apt-get update -qq && \
     apt-get install -qq git wget gzip tar gnupg2 && \
     eval $(ssh-agent -s) && \
-    sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -  && \
     apt-get update && \
     apt-get -y install p7zip-full postgresql-13 postgresql-13-postgis-3 postgresql-13-postgis-3-scripts && \
