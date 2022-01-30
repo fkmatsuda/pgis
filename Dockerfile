@@ -6,8 +6,9 @@ ENV DB_USER=qgis
 ENV DB_PASSWORD=qgis
 ENV TIMEZONE=UTC
 
-RUN apt-get update && \
-    apt-get install -qq git wget gzip tar gnupg2 p7zip-full apt-utils
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
+    apt-get update && \
+    apt-get install -qy git wget gzip tar gnupg2 p7zip-full apt-utils
 RUN echo "deb http://deb.debian.org/debian buster contrib non-free" >> /etc/apt/sources.list.d/contrib.list && \
     echo "deb http://deb.debian.org/debian buster-updates contrib non-free" >> /etc/apt/sources.list.d/contrib.list && \
     echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
