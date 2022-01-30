@@ -9,12 +9,11 @@ ENV TIMEZONE=UTC
 RUN echo "deb http://deb.debian.org/debian buster contrib non-free" >> /etc/apt/sources.list.d/contrib.list && \
     echo "deb http://deb.debian.org/debian buster-updates contrib non-free" >> /etc/apt/sources.list.d/contrib.list && \
     apt-get update -qq && \
-    apt-get install -qq git wget gzip tar gnupg2 && \
-    eval $(ssh-agent -s) && \
-    echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
+    apt-get install -qq git wget gzip tar gnupg2 p7zip-full 
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -  && \
     apt-get update && \
-    apt-get -y install p7zip-full postgresql-13 postgresql-13-postgis-3 postgresql-13-postgis-3-scripts && \
+    apt-get -qq install postgresql-13 postgresql-13-postgis-3 postgresql-13-postgis-3-scripts && \
     apt-get autoclean 
 
 COPY postgres/pg_hba.conf /pg_hba.conf
