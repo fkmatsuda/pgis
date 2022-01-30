@@ -6,6 +6,9 @@ ENV DB_USER=qgis
 ENV DB_PASSWORD=qgis
 ENV TIMEZONE=UTC
 
+RUN ln -s /usr/bin/dpkg-split /usr/sbin/dpkg-split && \
+    ln -s /usr/bin/dpkg-deb /usr/sbin/dpkg-deb && \
+    ln -s /bin/rm /usr/sbin/rm 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
     apt-get update && \
     apt-get install -qy git wget gzip tar gnupg2 p7zip-full apt-utils
