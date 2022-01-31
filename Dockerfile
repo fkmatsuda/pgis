@@ -9,11 +9,10 @@ ENV TIMEZONE=UTC
 RUN ln -s /usr/bin/dpkg-split /usr/sbin/dpkg-split && \
     ln -s /usr/bin/dpkg-deb /usr/sbin/dpkg-deb && \
     ln -s /bin/rm /usr/sbin/rm && \
-    ln -s /bin/tar /usr/sbin/tar && \
-    ln -s /bin/nscd /usr/sbin/nscd 
+    ln -s /bin/tar /usr/sbin/tar
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
     apt-get update && \
-    apt-get install -qy git wget gzip tar gnupg2 p7zip-full apt-utils
+    apt-get install -qy git wget gzip tar gnupg2 p7zip-full apt-utils nscd
 RUN echo "deb http://deb.debian.org/debian buster contrib non-free" >> /etc/apt/sources.list.d/contrib.list && \
     echo "deb http://deb.debian.org/debian buster-updates contrib non-free" >> /etc/apt/sources.list.d/contrib.list && \
     echo "deb http://apt.postgresql.org/pub/repos/apt buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
